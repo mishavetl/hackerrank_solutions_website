@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <script src="{{ STATIC_URL }}codemirror/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="{{ STATIC_URL }}codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}codemirror/theme/monokai.css">
+  <script src="{{ STATIC_URL }}codemirror/mode/python/python.js"></script>
+{% endblock %}
+
+{% block nav_links %}
+  <li><a href="{% url 'index' %}">Home</a></li>
+  <li class="active"><a href="#">Archive<span class="sr-only">(current)</span></a></li>
+  <li><a href="{% url 'add_solution' %}">Add Solution</a></li>
+{% endblock %}
+
+{% block content %}
+  <div class="padding50">
+    <div class="border">
+      <h2 class="capitalize padding50 inline-block">{{ solution.title }}</h2>
+      |
+      <i class="padding50 inline-block">author: {{ solution.moderator }}</i>
+      |
+      <div class="padding50 inline-block">Date Published: {{ solution.created_at }}</div>
+      <br /> <br />
+    </div>
+
+    <textarea id="code">{{ solution.source|linebreaks }}</textarea>
+  </div>
+
+  <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        theme: "monokai",
+        lineNumbers: true,
+        smartIndent: true,
+        readOnly: true,
+        mode: "python"
+      });
+  </script>
+
+{% endblock %}
