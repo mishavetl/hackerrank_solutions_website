@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block nav_links %}
-  <li><a href="{% url 'index' %}">Home</a></li>
-  <li class="active"><a href="#">Archive<span class="sr-only">(current)</span></a></li>
+  <li><a href="{% url 'about' %}">Home</a></li>
+  <li class="active"><a href="{% url 'archive' %}">Archive<span class="sr-only">(current)</span></a></li>
   <li><a href="{% url 'add_solution' %}">Add Solution</a></li>
 {% endblock %}
 
