@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 
+{% block nav_links %}
+  <li><a href="{% url 'about' %}">Home</a></li>
+  <li><a href="{% url 'archive' %}">Archive</a></li>
+  <li><a href="{% url 'add_solution' %}">Add Solution</a></li>
+{% endblock %}
+
+{% block login_link %}
+  <li class="active"><a href="{% url 'login' %}">Login<span class="sr-only">(current)</span></a></li>
+{% endblock %}
+
 {% block content %}
 
   {% if form.errors %}

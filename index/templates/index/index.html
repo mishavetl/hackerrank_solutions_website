@@ -1,23 +1,14 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 {% block content %}
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Date Published</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for solution in solutions %}
-    <a href="solution/{{ solution.id }}" class="btn">
-      <tr onclick="document.location = 'solution/{{ solution.id }}'" style="cursor: pointer">
-        <td>{{ solution.title }}</td>
-        <td>{{ solution.moderator }}</td>
-        <td>{{ solution.created_at }}</td>
-      </tr>
-    </a>
-  {% endfor %}
-    </tbody>
-  </table>
+  <h2 style="text-align: center;">About the website</h2>
+  <p class="text-primary padding50">
+    <br /><br /><br /><br />
+    There are many good programmers in the world. But no one of them can solve every task.
+    One this website you can find solutions and explanation of the tasks from the Hackerrank website.
+    If you completely don't understand this task you can search solution on this website.
+    Please don't take from here solution if you understand this task or you only want to earn hackos and points!
+    <br /><br />
+    <i style="margin-left: 80%;">Michael Vietluzhskih</i>
+  </p>
 {% endblock %}

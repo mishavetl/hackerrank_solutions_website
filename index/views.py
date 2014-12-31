@@ -6,7 +6,7 @@ from index.forms import SolutionForm
 
 def index(request):
 	solutions = Solution.objects.all().order_by("-created_at")[:5]
-	return render(request, 'index/index.html', {
+	return render(request, 'index/archive.html', {
 		'solutions': solutions,
 	})
 
@@ -16,6 +16,9 @@ def solution(request, id):
 	return render(request, 'index/solution.html', {
 		'solution': solution
 	})
+
+def about(request):
+	return render(request, 'index/index.html', {})
 
 @login_required
 def add_solution(request):

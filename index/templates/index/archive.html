@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block nav_links %}
+  <li><a href="{% url 'about' %}">Home</a></li>
+  <li class="active"><a href="{% url 'archive' %}">Archive<span class="sr-only">(current)</span></a></li>
+  <li><a href="{% url 'add_solution' %}">Add Solution</a></li>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date Published</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for solution in solutions %}
+    <tr onclick="document.location = 'solution/{{ solution.id }}/'" style="cursor: pointer">
+      <td>{{ solution.title }}</td>
+      <td>{{ solution.moderator }}</td>
+      <td>{{ solution.created_at }}</td>
+    </tr>
+  {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
