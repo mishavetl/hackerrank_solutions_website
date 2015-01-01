@@ -1,13 +1,30 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+
 from django.http import HttpResponseRedirect
+
+from django.db.models import Q
+
+from django.contrib.auth.decorators import login_required
+
 from index.models import Solution
 from index.forms import SolutionForm
 
+
 def index(request):
-	solutions = Solution.objects.all().order_by("-created_at")[:5]
+	query = ''
+
+	if request.method == 'POST':
+
+		if ('query' in request.POST):
+			query = request.POST['query']
+
+			solutions = Solution.objects.filter(Q(title__icontains=query)).order_by('created_at')
+	else:
+		solutions = Solution.objects.all().order_by("-created_at")[:5]
+
 	return render(request, 'index/archive.html', {
 		'solutions': solutions,
+		'query': query
 	})
 
 def solution(request, id):

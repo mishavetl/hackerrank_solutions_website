@@ -7,22 +7,40 @@
 {% endblock %}
 
 {% block content %}
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Date Published</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for solution in solutions %}
-    <tr onclick="document.location = 'solution/{{ solution.id }}/'" style="cursor: pointer">
-      <td>{{ solution.title }}</td>
-      <td>{{ solution.moderator }}</td>
-      <td>{{ solution.created_at }}</td>
-    </tr>
-  {% endfor %}
-    </tbody>
-  </table>
+  <br /><br />
+  <div class="padding50">
+    <form action="{% url 'archive' %}" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" name="query" class="form-control" value="{{ query }}" placeholder="Enter query to search...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">Search</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+    </form>
+
+    <br /><br />
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Date Published</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for solution in solutions %}
+      <tr onclick="document.location = 'solution/{{ solution.id }}/'" style="cursor: pointer">
+        <td>{{ solution.title }}</td>
+        <td>{{ solution.moderator }}</td>
+        <td>{{ solution.created_at }}</td>
+      </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}
