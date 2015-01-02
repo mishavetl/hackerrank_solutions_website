@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 class Solution(models.Model):
 	title = models.CharField(max_length=200)
 	source = models.TextField(default="")
-	points = models.IntegerField(default=1)
 	moderator = models.ForeignKey(User, related_name='moderated_solutions')
-	voters = models.ManyToManyField(User, related_name='liked_solutions')
+	explanation = models.TextField(default="")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 

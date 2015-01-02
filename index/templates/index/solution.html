@@ -1,9 +1,12 @@
 {% extends "base.html" %}
+{% load phileo_tags %}
+
 
 {% block head %}
+  <script src="{{ STATIC_URL }}js/eldarion-ajax.min.js"></script>
   <script src="{{ STATIC_URL }}codemirror/lib/codemirror.js"></script>
-  <link rel="stylesheet" href="{{ STATIC_URL }}codemirror/lib/codemirror.css">
-  <link rel="stylesheet" href="{{ STATIC_URL }}codemirror/theme/monokai.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}codemirror/theme/monokai.css" />
   <script src="{{ STATIC_URL }}codemirror/mode/python/python.js"></script>
 {% endblock %}
 
@@ -21,6 +24,8 @@
       <i class="padding50 inline-block">author: {{ solution.moderator }}</i>
       |
       <div class="padding50 inline-block">Date Published: {{ solution.created_at }}</div>
+      |
+      {% phileo_widget user solution %}
       <br /> <br />
     </div>
 

@@ -31,6 +31,19 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Phileo liking widget likable models
+
+PHILEO_LIKABLE_MODELS = {
+    'index.Solution': {}
+}
+
+# Authentication backends
+
+AUTHENTICATION_BACKENDS = (
+    'phileo.auth_backends.CanLikeBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
 # Template dirs
 
 TEMPLATE_DIRS = (
@@ -53,6 +66,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phileo',
     'index',
 )
 

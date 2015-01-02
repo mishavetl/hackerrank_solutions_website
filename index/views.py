@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from index.models import Solution
 from index.forms import SolutionForm
@@ -27,11 +28,14 @@ def index(request):
 		'query': query
 	})
 
+@login_required
 def solution(request, id):
+	user = User.objects.get(username=request.user)
 	solution = Solution.objects.get(id=id)
 
 	return render(request, 'index/solution.html', {
-		'solution': solution
+		'solution': solution,
+		'user': user
 	})
 
 def about(request):

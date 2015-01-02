@@ -8,6 +8,9 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
+    # Phileo liking widget urls
+    url(r'^likes/', include('phileo.urls')),
+
     # Login, logout urls
     url(r'^login/$', 'django.contrib.auth.views.login',
         {'template_name': 'auth/login.html'}, name='login'),
