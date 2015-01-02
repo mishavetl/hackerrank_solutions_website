@@ -18,6 +18,10 @@
   text-align: left;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .inline-block {
   display: inline-block;
 }

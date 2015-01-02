@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+  <h1 class="text-center">Create an account</h1>
+
+  <form action="{% url 'register' %}" method="post">
+      {% csrf_token %}
+      <div class="padding50">
+        {{ form.as_p }}
+      </div>
+      <input type="submit" value="Create the account">
+  </form>
+
+  <script>
+    $('ul.errorlist').each(function(){
+      $( this ).replaceWith( "<div>" + $( this ).html() + "</div>" );
+      $( this ).children("li").replaceWith('<p>' + $( this ).children("li").html() + '</p>');
+    });
+    $('form div div').addClass('alert alert-danger');
+    $('span.helptext').toggleClass('label label-danger');
+  </script>
+
+{% endblock %}
