@@ -58,6 +58,7 @@
             {% else %}
 
               {% block login_link %}
+                <li><a href="{% url 'register' %}">Registration</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
               {% endblock %}
 

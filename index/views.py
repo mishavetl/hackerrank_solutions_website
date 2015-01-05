@@ -3,13 +3,13 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from django.db.models import Q
+import random
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from index.models import Solution
 from index.forms import SolutionForm
-
 
 def index(request):
 	query = ''

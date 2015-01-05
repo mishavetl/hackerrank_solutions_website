@@ -12,11 +12,7 @@ urlpatterns = patterns('',
     url(r'^likes/', include('phileo.urls')),
 
     # Login, logout urls
-    url(r'^login/$', 'django.contrib.auth.views.login',
-        {'template_name': 'auth/login.html'}, name='login'),
-
-    url(r'^logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': '/'}, name='logout'),
+    url(r'^auth/', include('login.urls')),
 
     # Other urls, see urls in index app
     url('', include(index_urls), name="index"),

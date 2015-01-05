@@ -1,25 +1,67 @@
 {% extends "base.html" %}
 
+{% block nav_links %}
+  <li><a href="{% url 'about' %}">Home</a></li>
+  <li><a href="{% url 'archive' %}">Archive</a></li>
+  <li><a href="{% url 'add_solution' %}">Add Solution</a></li>
+{% endblock %}
+
+{% block login_link %}
+  <li class="active"><a href="{% url 'register' %}">Registration</a></li>
+  <li><a href="{% url 'login' %}">Login</a></li>
+{% endblock %}
+
+
 {% block title %}Create an account{% endblock %}
 
 {% block content %}
   <h1 class="text-center">Create an account</h1>
 
-  <form action="{% url 'register' %}" method="post">
-      {% csrf_token %}
-      <div class="padding50">
-        {{ form.as_p }}
-      </div>
-      <input type="submit" value="Create the account">
-  </form>
 
-  <script>
-    $('ul.errorlist').each(function(){
-      $( this ).replaceWith( "<div>" + $( this ).html() + "</div>" );
-      $( this ).children("li").replaceWith('<p>' + $( this ).children("li").html() + '</p>');
-    });
-    $('form div div').addClass('alert alert-danger');
-    $('span.helptext').toggleClass('label label-danger');
-  </script>
+  <form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <div class="padding50 center">
+      <div class="form-group">
+        <label for="id_username">Username</label>
+        {% if error_user %}
+          <div class="alert alert-danger">
+            <p>{{ error_user }}</p>
+          </div>
+        {% endif %}
+        <input id="id_username" class="form-control" type="text" name="username" maxlength="30" />
+      </div>
+      <div class="form-group">
+        <label for="id_password1">Password</label>
+        {% if error_passw %}
+          <div class="alert alert-danger">
+            <p>{{ error_passw }}</p>
+          </div>
+        {% endif %}
+        <input id="id_password1" class="form-control" type="password" name="passw" />
+      </div>
+      <div class="form-group">
+        <label for="id_password2">Password confirmation</label>
+        {% if error_passw2 %}
+          <div class="alert alert-danger">
+            <p>{{ error_passw2 }}</p>
+          </div>
+        {% endif %}
+        <input id="id_password2" class="form-control" type="password" name="passw2" />
+      </div>
+      <div class="form-group">
+        <label for="captcha">Captcha: {{ captcha_text }}</label>
+        {% if error_captcha %}
+          <div class="alert alert-danger">
+            <p>{{ error_captcha }}</p>
+          </div>
+        {% endif %}
+        <input id="captcha" class="form-control" type="text" name="captcha" />
+        <input type="hidden" name="captcha_text" value="{{ captcha_text }}">
+      </div>
+      <div class="submit">
+        <input class="btn btn-default" type="submit" value="Create the account" />
+      </div>
+    </div>
+  </form>
 
 {% endblock %}

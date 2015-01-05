@@ -7,10 +7,12 @@
 {% endblock %}
 
 {% block login_link %}
+  <li><a href="{% url 'register' %}">Registration</a></li>
   <li class="active"><a href="{% url 'login' %}">Login<span class="sr-only">(current)</span></a></li>
 {% endblock %}
 
 {% block content %}
+  <h1 class="text-center">Sign in</h1>
 
   {% if form.errors %}
     <div class="alert alert-danger" role="alert">
@@ -21,7 +23,7 @@
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
 
-    <div class="padding50">
+    <div class="padding50 center">
       <div class="form-group">
         <label for="id_username">Username</label>
       	<input class="form-control" id="id_username" type="text" name="username" />
@@ -30,7 +32,9 @@
       	<label for="id_password">Password</label>
       	<input class="form-control" id="id_password" type=password name="password" />
       </div>
-      <input type="submit" value="login" class="btn" />
+      <div class="submit">
+        <input type="submit" value="login" class="btn btn-default" />
+      </div>
     </div>
     <input type="hidden" name="next" value="{{ next }}" />
 
