@@ -24,7 +24,7 @@ DEBUG = True
 
 # Login redirect url
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 
 TEMPLATE_DEBUG = True

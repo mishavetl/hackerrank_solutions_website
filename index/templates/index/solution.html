@@ -19,13 +19,27 @@
 {% block content %}
   <div class="padding50">
     <div class="border">
-      <h2 class="capitalize padding50 inline-block">{{ solution.title }}</h2>
+      <!-- <h2 class="capitalize padding50 inline-block">{{ solution.title }}</h2>
       |
       <i class="padding50 inline-block">author: {{ solution.moderator }}</i>
       |
       <div class="padding50 inline-block">Date Published: {{ solution.created_at }}</div>
       |
-      {% phileo_widget user solution %}
+      <div class="align-right inline-block">{% phileo_widget user solution %}</div> -->
+
+      <ul class="list-inline">
+
+        <li><h2 class="capitalize padding50 inline-block">{{ solution.title }}</h2></li>
+
+        <li><i class="padding50 inline-block">author: {{ solution.moderator }}</i></li>
+
+        <li><div class="padding50 inline-block">Date Published: {{ solution.created_at }}</div></li>
+
+        <li><div class="padding50 inline-block right-aligned">{% phileo_widget user solution %}</div></li>
+
+      </ul>
+
+
       <br /> <br />
     </div>
 
